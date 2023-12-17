@@ -2,7 +2,7 @@
 using NotificationPatternSample.Application.Services;
 using NotificationPatternSample.Shared.Notification;
 
-namespace NotificationPatternSample.Infrastructure.DependencyInjection
+namespace NotificationPatternSample.Infrastructure.Extensions
 {
     public static class ServicesConfigurator
     {

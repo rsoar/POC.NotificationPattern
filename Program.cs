@@ -1,8 +1,6 @@
-using NotificationPatternSample.Infrastructure.DependencyInjection;
+using NotificationPatternSample.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 
 builder.AddServices();
 builder.Services.AddControllers();
@@ -12,6 +10,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseGlobalExceptionHandler(app.Environment, app.Services.GetRequiredService<ILoggerFactory>());
 
 if(app.Environment.IsDevelopment())
 {

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using NotificationPatternSample.Shared.Notification;
 
-namespace NotificationPatternSample.Presentation.Filters
+namespace NotificationPatternSample.Infrastructure.Filters
 {
     public class NotificationFilter : IAsyncResultFilter
     {
@@ -22,10 +22,15 @@ namespace NotificationPatternSample.Presentation.Filters
                 context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
                 context.HttpContext.Response.ContentType = "application/json";
 
-                var notifications = JsonConvert.SerializeObject(_notificationContext.Notifications);
-                await context.HttpContext.Response.WriteAsync(notifications);
+                var json = new
+                {
+                    context.HttpContext.Response.StatusCode,
+                    Messages = _notificationContext.Notifications,
+                };
 
-                _logger.LogError(message: notifications);
+                await context.HttpContext.Response.WriteAsync(JsonConvert.SerializeObject(json));
+
+                _logger.LogError(json.ToString());
 
                 return;
             }

@@ -1,6 +1,6 @@
-﻿using NotificationPatternSample.Presentation.Filters;
+﻿using NotificationPatternSample.Infrastructure.Filters;
 
-namespace NotificationPatternSample.Infrastructure.DependencyInjection
+namespace NotificationPatternSample.Infrastructure.Extensions
 {
     public static class FiltersConfigurator
     {
